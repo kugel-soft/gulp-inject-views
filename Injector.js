@@ -1,6 +1,5 @@
 var path = require('path');
 var fs = require("fs");
-var htmlmin = require('html-minifier');
 
 var Injector = (function () {
 	Injector.prototype.views = [];
@@ -18,8 +17,7 @@ var Injector = (function () {
 			if (stat.isFile()) {
 				var text = fs.readFileSync(viewPath, 'utf8');
 				text = text.replace(/[\n\r\t]+/g, " ");
-				var result = htmlmin.minify(text, { collapseWhitespace: true, conservativeCollapse:true });
-				return result;
+				return text;
 			}
 		} catch (err) {
 			console.log(err.message);
